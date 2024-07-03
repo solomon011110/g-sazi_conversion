@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <title>大匙小匙 グラム変換サイト</title>
+    <script>
+        const options = {
+            "": 5,
+            "0": 5,
+            "agua": 5,
+            "salsaWorcestershire": 6,
+            "féculaDePatata": 3,
+            "curryEnPolvo": 2,
+            "leche": 5,
+            "comino": 1.9,
+            "catsup": 5,
+            "alcohol": 5,
+            "azùcar": 3,
+            "aceite": 4,
+            "sal": 6,
+            "salsaDeSoja": 6,
+            "vinagre": 5,
+            "salsaDeFrijoles":5,
+            "harina": 3,
+            "levaduraEnPolvo": 4,
+            "mayonesa": 4,
+            "miso": 6,
+            "milin": 6,
+            "wasabiko":1.5
+        };
+    </script>
+</head>
+
+<body x-data='{
+    input: 0,
+    seas: "",
+    sazi: 1
+   }'>
+
+    <div class="flex flex-row justify-start gap-2 w-4/5 mx-auto mt-4">
+        <label>
+            <select v class="h-16 text-2xl" name="seasoning" id="seasoning" x-model="seas">
+                <option value="0">--調味料を--
+            </option>
+                <option value="agua">水</option>
+                <option value="salsaWorcestershire">ウスターソース</option>
+                <option value="féculaDePatata">片栗粉</option>
+                <option value="curryEnPolvo">カレー粉</option>
+                <option value="leche">牛乳</option>
+                <option value="comino">クミンシード</option>
+                <option value="catsup">ケチャップ</option>
+                <option value="alcohol">酒</option>
+                <option value="azùcar">砂糖</option>
+                <option value="aceite">サラダ油</option>
+                <option value="sal">塩</option>
+                <option value="salsaDeSoja">しょうゆ</option>
+                <option value="vinagre">酢</option>
+                <option value="salsaDeFrijoles">豆板醤</option>
+                <option value="harina">薄力粉</option>
+                <option value="levaduraEnPolvo">ベーキングパウダー</option>
+                <option value="mayonesa">マヨネーズ</option>
+                <option value="miso">みそ</option>
+                <option value="milin">みりん</option>
+                <option value="wasabiko">わさび粉</option>
+                <option value="0">--調味料--
+            </option>
+            </select>
+        </label>
+        <input x-model="input" type="number" class=" w-16 rounded-lg text-3xl my-0">杯
+    </div>
+
+    <div class="flex flex-row justify-start gap-3 w-4/5 mx-auto mt-2">
+        <div>
+            <input @click="sazi=1" type="radio" name="sazi" id="kosazi" value="1" class="hidden peer" checked>
+            <label for="kosazi"
+                class="flex flex-col w-full max-w-lg mx-auto text-center border-2 rounded-2xl border-gray-900 p-2 my-4 text-3xl peer-checked:bg-yellow-200">小さじ</label>
+        </div>
+        <div>
+            <input @click="sazi=3" type="radio" name="sazi" id="oosazi" value="3" class="hidden peer">
+            <label for="oosazi"
+                class="flex flex-col w-full max-w-lg mx-auto text-center border-2 rounded-2xl border-gray-900 p-2 my-4 text-3xl peer-checked:bg-yellow-200">大さじ</label>
+        </div>
+    </div>
+
+    <div class="flex flex-row justify-start gap-2 w-4/5 mx-auto mt-2">
+        <button @click="input+=0.5" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-xl">0.5杯</button>
+        <button @click="input+=1" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-xl">１杯</button>
+        <button @click="input+=2" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-xl">２杯</button>
+        <button @click="input+=3" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-xl">３杯</button>
+    </div>
+
+    <div class="flex flex-row justify-start gap-2 w-4/5 mx-auto mt-2">
+        <button @click="input=input*0.5" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">半分</button>
+        <button @click="input=input*2" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">２倍</button>
+        <button @click="input=input*3" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">３倍</button>
+        <button @click="input=input*5" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">５倍</button>
+    </div>
+    <!-- 結果 -->
+    <div class="w-3/4 mx-auto mt-20">
+        <p class="text-center border-b-2 border-slate-500"> <!--flex justify-between items-end-->
+            <span class="text-[48px]" x-text="input * options[seas] * sazi"></span> g
+        </p>
+    </div>
+
+    <div class="flex flex-row justify-end gap-3 w-4/5 mx-auto mt-12">
+        <button @click="input=0" class="w-20 my-4 text-center border-2 rounded-xl border-gray-600 p-1">リセット</button>
+    </div>
+
+    <footer class="absolute bottom-0 h-8 w-full text-[8px] text-center text-white bg-slate-600">
+        <p>
+            出典：https://www.city.ichikawa.lg.jp/common/000272581.pdf
+            <br>　　　https://www.sbfoods.co.jp/customer/faq/quantity.html
+        </p>
+    </footer>
+</body>
+</html>
