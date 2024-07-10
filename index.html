@@ -94,7 +94,7 @@
     </div>
 
     <div class="flex flex-row justify-start gap-2 w-4/5 mx-8 mt-2">
-        <button @click="input=Number(input)+0.5" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">半分</button>
+        <button @click="input=Number(input)*0.5" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">半分</button>
         <button @click="input=Number(input)*2" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">２倍</button>
         <button @click="input=Number(input)*3" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">３倍</button>
         <button @click="input=Number(input)*5" class="w-20 my-4 text-center border-2 rounded-xl border-gray-900 p-2 text-2xl">５倍</button>
@@ -107,10 +107,10 @@
     </div>
 
     <div class="flex flex-row justify-end gap-3 w-4/5 mx-8 mt-12">
-        <button @click="input=0" class="w-20 my-4 text-center border-2 rounded-xl border-gray-600 p-1">リセット</button>
+        <button @click="input=0" class="w-24 my-6 text-center border-2 rounded-xl border-gray-600 p-1">リセット</button>
     </div>
 
-    <footer class="absolute bottom-0 h-8 w-full text-[8px] text-center text-white bg-slate-600">
+    <footer class="absolute bottom-0 h-8 w-full text-[9px] text-center text-white bg-slate-600">
         <p>
             出典：https://www.city.ichikawa.lg.jp/common/000272581.pdf
             <br>　　　https://www.sbfoods.co.jp/customer/faq/quantity.html
